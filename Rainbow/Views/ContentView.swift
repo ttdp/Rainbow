@@ -25,9 +25,10 @@ struct ContentView: View {
     ]
     @State var showDetails = true
     
-    @EnvironmentObject var player: Player
+    @ObservedObject var player: Player
     
     var body: some View {
+        
         NavigationView {
             
             VStack(alignment: .center, spacing: 30) {
@@ -36,7 +37,7 @@ struct ContentView: View {
                     label: { Text(player.isPlaying ? "Pause" : "Play") }
                 )
                 
-                NavigationLink(destination: PlayerView()) {
+                NavigationLink(destination: PlayerView(player: player)) {
                     Text("All Episodes")
                 }
                 
@@ -86,7 +87,7 @@ struct ToggleTextButton: View {
 struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ContentView()
+        ContentView(player: Player())
     }
     
 }

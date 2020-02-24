@@ -11,6 +11,12 @@ import SwiftUI
 struct Episode: Identifiable {
     let id = UUID()
     let title: String
+    let image: String?
+    
+    init(title: String, image: String? = nil) {
+        self.title = title
+        self.image = image
+    }
 }
 
 final class Player: ObservableObject {
@@ -29,31 +35,48 @@ final class Player: ObservableObject {
 
 struct PlayerView: View {
     
-    @EnvironmentObject var player: Player
+    @ObservedObject var player: Player
     
-    let episodes = [Episode(title: "Breaking Bad"), Episode(title: "Better Call Saul")]
+    let episodes = [
+        Episode(title: "Breaking Bad", image: "breaking_bad"),
+        Episode(title: "Breaking Bad")
+    ]
+    
+    init(player: Player) {
+        self.player = player
+        UITableView.appearance().tableFooterView = UIView()
+        UITableView.appearance().separatorStyle = .none
+    }
     
     var body: some View {
-        List {
+        
+        VStack(alignment: .center, spacing: 30) {
             Button(
                 action: { self.player.isPlaying ? self.player.pause() : self.player.play() },
                 label: { Text(player.isPlaying ? "Pause" : "Play") }
             )
             
-            ForEach(episodes) { episode in
-                Text(episode.title)
+            List {
+                Text("--")
+                ForEach(episodes) { episode in
+                    RainbowRow(episode: episode)
+                }
+                .frame(maxWidth: .infinity)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.blue, lineWidth: 4)
+                )
             }
         }
+        .navigationBarTitle(Text("Episodes"))
     }
     
 }
 
 struct PlayerView_Previews: PreviewProvider {
     
-    static let player = Player()
-    
     static var previews: some View {
-        PlayerView()
+        PlayerView(player: Player())
     }
     
 }
