@@ -37,7 +37,7 @@ struct ContentView: View {
                     label: { Text(player.isPlaying ? "Pause" : "Play") }
                 )
                 
-                NavigationLink(destination: PlayerView(player: player)) {
+                NavigationLink(destination: EpisodeView(player: player)) {
                     Text("All Episodes")
                 }
                 
