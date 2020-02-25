@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct Episode: Identifiable {
     let id = UUID()
@@ -36,10 +37,11 @@ final class Player: ObservableObject {
 struct PlayerView: View {
     
     @ObservedObject var player: Player
+    @State var keyword = ""
     
     let episodes = [
         Episode(title: "Breaking Bad", image: "breaking_bad"),
-        Episode(title: "Breaking Bad")
+        Episode(title: "Better Call Saul")
     ]
     
     init(player: Player) {
@@ -57,18 +59,36 @@ struct PlayerView: View {
             )
             
             List {
-                Text("--")
+                TextField("Search...", text: $keyword)
                 ForEach(episodes) { episode in
                     RainbowRow(episode: episode)
                 }
                 .frame(maxWidth: .infinity)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.blue, lineWidth: 4)
-                )
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.blue, lineWidth: 4))
             }
+            .onTapGesture(perform: dismissKeyboard)
         }
         .navigationBarTitle(Text("Episodes"))
+        .onAppear(perform: subscribe)
+    }
+    
+    @State var subscription: AnyCancellable?
+    
+    func subscribe() {
+        let notification = UIApplication.keyboardDidShowNotification
+        let publisher = NotificationCenter.default.publisher(for: notification)
+            .map { (notification) -> CGFloat in
+                guard let endFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                    return 0.0
+                }
+                return endFrame.cgRectValue.height
+        }
+        
+        subscription = publisher.sink(receiveCompletion: { _ in
+            print("Completion")
+        }, receiveValue: { height in
+            print("Received keyboard height: \(height)")
+        })
     }
     
 }

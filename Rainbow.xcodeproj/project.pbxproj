@@ -14,6 +14,7 @@
 		7121900D23F8C1F600A2603A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7121900C23F8C1F600A2603A /* Preview Assets.xcassets */; };
 		7121901023F8C1F600A2603A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7121900E23F8C1F600A2603A /* LaunchScreen.storyboard */; };
 		715AEC342403B47E001B0C00 /* RainbowRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AEC332403B47E001B0C00 /* RainbowRow.swift */; };
+		718C44C22404C292002C9A61 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C44C12404C292002C9A61 /* View+Extension.swift */; };
 		71932F33240379BB00531586 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71932F32240379BB00531586 /* PlayerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		7121900F23F8C1F600A2603A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7121901123F8C1F600A2603A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		715AEC332403B47E001B0C00 /* RainbowRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowRow.swift; sourceTree = "<group>"; };
+		718C44C12404C292002C9A61 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		71932F32240379BB00531586 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 				7121900323F8C1F300A2603A /* AppDelegate.swift */,
 				7121900523F8C1F300A2603A /* SceneDelegate.swift */,
 				71932F312403679100531586 /* Views */,
+				718C44C02404C284002C9A61 /* Extensions */,
 				71932F302403675600531586 /* Supporting Files */,
 				7121901123F8C1F600A2603A /* Info.plist */,
 				7121900B23F8C1F600A2603A /* Preview Content */,
@@ -76,6 +79,14 @@
 				7121900C23F8C1F600A2603A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		718C44C02404C284002C9A61 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				718C44C12404C292002C9A61 /* View+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		71932F302403675600531586 /* Supporting Files */ = {
@@ -172,6 +183,7 @@
 				715AEC342403B47E001B0C00 /* RainbowRow.swift in Sources */,
 				7121900623F8C1F300A2603A /* SceneDelegate.swift in Sources */,
 				7121900823F8C1F300A2603A /* ContentView.swift in Sources */,
+				718C44C22404C292002C9A61 /* View+Extension.swift in Sources */,
 				71932F33240379BB00531586 /* PlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
