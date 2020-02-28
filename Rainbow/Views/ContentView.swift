@@ -50,6 +50,12 @@ struct ContentView: View {
                         }
                     }
                 }
+                
+                NavigationLink(destination: AutoScrollView()) {
+                    Text("Let's auto scroll")
+                }
+  
+                Spacer()
             }
             .navigationBarTitle(Text("Pokemon"))
             .navigationBarItems(
